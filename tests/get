@@ -1,0 +1,15 @@
+#!/bin/bash
+# download xsd files for CrossRef
+base=https://gitlab.com/crossref/schema/-/raw/master/schemas/
+(cat << EOF
+crossref4.5.0.xsd
+common4.5.0.xsd
+AccessIndicators.xsd
+JATS-journalpublishing1-mathml3.xsd
+fundref.xsd
+clinicaltrials.xsd
+EOF
+) | while read schema
+do
+  wget -nc $base$schema
+done
