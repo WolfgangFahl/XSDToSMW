@@ -36,10 +36,10 @@ class TestXSD2SMW(unittest.TestCase):
         if TestXSD2SMW.debug:
             print("parsing %s" % crossRefUrl)
         xsd=XSD(crossRefUrl)
-        xsdDict=dict(sorted(xsd.schema.elements))
+        xsdDict=dict(xsd.schema.elements)
         pprint(xsdDict)
         self.assertTrue("conference_name" in xsdDict)
-        for schemaElement in xsdDict:
+        for schemaElement in sorted(xsdDict):
             self.treeWalk(xsdDict[schemaElement])
         pass
 
