@@ -19,6 +19,13 @@ class TestXSD2SMW(unittest.TestCase):
 
     def tearDown(self):
         pass
+    
+    def treeWalk(self,root,parent=None,indent=''):
+        if parent is None or (not root==parent):
+            pprint("%s%s" % (indent,root))
+            if hasattr(root,'iter_components') and callable(root.iter_components):
+                for subnode in root.iter_components():
+                    self.treeWalk(subnode,root,indent+"  ")
 
     def testXSDParsing(self):
         #crossRefUrl="https://gitlab.com/crossref/schema/-/raw/Conference_ID/schemas/crossref4.5.0.xsd"
@@ -29,7 +36,11 @@ class TestXSD2SMW(unittest.TestCase):
         if TestXSD2SMW.debug:
             print("parsing %s" % crossRefUrl)
         xsd=XSD(crossRefUrl)
-        pprint(dict(xsd.schema.elements))
+        xsdDict=dict(sorted(xsd.schema.elements))
+        pprint(xsdDict)
+        self.assertTrue("conference_name" in xsdDict)
+        for schemaElement in xsdDict:
+            self.treeWalk(xsdDict[schemaElement])
         pass
 
 
