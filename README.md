@@ -9,5 +9,9 @@ import XSD schema into Semantic MediaWiki
 # Installation
 The software is written in Python and uses the xmlschema library
 
+# Documentation
+[OpenResearch Wiki](https://www.openresearch.org/wiki/XSDToSMW)
+
+
 ### Authors
 * [Wolfgang Fahl](http://www.bitplan.com/Wolfgang_Fahl)
