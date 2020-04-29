@@ -1,3 +1,3 @@
 # 2020-04-16
 # https://pypi.org/project/xmlschema/
-xmlschema
+xmlschema>=1.1.3

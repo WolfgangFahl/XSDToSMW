@@ -1,2 +1,10 @@
 #!/bin/bash
+# WF 2020-04-29
 sudo -H pip3 install -r requirements.txt
+if [ ! -d schema ]
+then
+  git clone --single-branch --branch Conference_ID https://gitlab.com/crossref/schema
+else
+  cd schema
+  git pull
+fi

@@ -1,3 +1,6 @@
+# work around for 403 forbidden
+schema
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

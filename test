@@ -1,0 +1,5 @@
+#!/bin/bash
+# WF 2020-04-29
+# run python unit tests
+export PYTHONPATH="."
+python3 -m unittest discover
