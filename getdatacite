@@ -1,0 +1,48 @@
+#!/bin/bash
+# WF 2020-05-19
+datacite=datacite
+base=https://schema.datacite.org/meta/kernel-4.3
+
+#
+# create the given directory
+#
+makedir() {
+  local l_path="$1"
+  if [ ! -d "$l_path" ]
+  then
+    echo "creating "$l_path" directory "
+    mkdir -p "$l_path"
+  fi
+}
+
+#
+# download from the given url
+#
+download(){
+  local l_base="$1"
+  local l_file="$2"
+  pwd=$(pwd)
+  echo "downloading $l_base/$l_file to $pwd"
+  curl -s "$l_base/$l_file" -o $l_file
+}
+makedir $datacite
+makedir $datacite/include
+cd $datacite
+download "$base" metadata.xsd
+cat << EOF |
+schemaLocation="include/xml.xsd"/>
+<xs:include schemaLocation="include/datacite-titleType-v4.xsd"/>
+<xs:include schemaLocation="include/datacite-contributorType-v4.xsd"/>
+<xs:include schemaLocation="include/datacite-dateType-v4.xsd"/>
+<xs:include schemaLocation="include/datacite-resourceType-v4.xsd"/>
+<xs:include schemaLocation="include/datacite-relationType-v4.xsd"/>
+<xs:include schemaLocation="include/datacite-relatedIdentifierType-v4.xsd"/>
+<xs:include schemaLocation="include/datacite-funderIdentifierType-v4.xsd"/>
+<xs:include schemaLocation="include/datacite-descriptionType-v4.xsd"/>
+<xs:include schemaLocation="include/datacite-nameType-v4.xsd"/>
+EOF
+while read line
+do
+  upath=$(echo $line | cut -f 2 -d'"')
+  download "$base" "$upath"
+done
