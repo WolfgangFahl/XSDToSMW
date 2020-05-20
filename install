@@ -5,6 +5,9 @@ if [ "$USER" = "travis" ]
 then
   pip=pip
 fi
+# py-3rdparty-mediawiki is not available on pypi.org yet @FIXME
+$pip install -i https://test.pypi.org/simple/ py-3rdparty-mediawiki==0.0.2
+# install other modules as specified
 $pip install -r requirements.txt
 if [ ! -d schema ]
 then
