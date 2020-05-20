@@ -1,5 +1,6 @@
 import unittest
 from wikibot.wikibot import WikiBot
+import pywikibot
 
 class TestWikiAccess(unittest.TestCase):
     def test_rq(self):
