@@ -15,9 +15,8 @@ class TestWikiAccess(unittest.TestCase):
             page = pywikibot.Page(site, u"WikiCFP")
             text = page.text
 
-
-        #self.assertEqual(True, False)
-        self.assertTrue('Nonprofit' in text)
+            #self.assertEqual(True, False)
+            self.assertTrue('Nonprofit' in text)
 
 if __name__ == '__main__':
     unittest.main()
