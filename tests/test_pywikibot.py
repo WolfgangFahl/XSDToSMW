@@ -3,7 +3,10 @@ from wikibot.wikibot import WikiBot
 import pywikibot
 
 class TestWikiAccess(unittest.TestCase):
+    ''' Test Accessing MediaWiki viy pyWikibot API'''
+    
     def test_rq(self):
+        ''' test accessing wiki with id "rq" using encrypted credentials'''
         wikibot=WikiBot.ofWikiId("rq")
         site = wikibot.site
         page = pywikibot.Page(site, u"WikiCFP")
