@@ -11,7 +11,7 @@ from pprint import pprint
 class TestXSD2SMW(unittest.TestCase):
     """ unit test for XSD schema to Semantic MediaWiki import
     """
-    debug=True
+    debug=False
 
     def setUp(self):
         pass
@@ -22,7 +22,8 @@ class TestXSD2SMW(unittest.TestCase):
     
     def treeWalk(self,root,parent=None,indent=''):
         if parent is None or (not root==parent):
-            pprint("%s%s" % (indent,root))
+            if self.debug:
+                pprint("%s%s" % (indent,root))
             if hasattr(root,'iter_components') and callable(root.iter_components):
                 for subnode in root.iter_components():
                     self.treeWalk(subnode,root,indent+"  ")
@@ -33,7 +34,7 @@ class TestXSD2SMW(unittest.TestCase):
         # git clone --single-branch --branch Conference_ID https://gitlab.com/crossref/schema
         script=os.path.realpath(__file__)
         crossRefUrl=os.path.dirname(script)+"/../schema/schemas/crossref4.5.0.xsd"
-        if TestXSD2SMW.debug:
+        if self.debug:
             print("parsing %s" % crossRefUrl)
         xsd=XSD(crossRefUrl)
         xsdDict=dict(xsd.schema.elements)
