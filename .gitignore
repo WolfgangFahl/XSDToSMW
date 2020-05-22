@@ -132,3 +132,7 @@ dmypy.json
 .pyre/
 # datacite
 datacite
+# pywikibot
+apicache-py3/
+pywikibot.lwp
+throttle.ctrl

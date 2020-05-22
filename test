@@ -2,4 +2,5 @@
 # WF 2020-04-29
 # run python unit tests
 export PYTHONPATH="."
+export PYWIKIBOT_NO_USER_CONFIG=1
 python3 -m unittest discover
