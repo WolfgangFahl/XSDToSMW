@@ -7,3 +7,5 @@ pywikibot>=3.0.20200508
 # https://pypi.org/project/pycrypto/
 # workaround for https://phabricator.wikimedia.org/T253378
 pycrypto
+# https://github.com/burnash/gspread
+gspread
