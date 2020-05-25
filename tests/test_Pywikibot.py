@@ -4,7 +4,7 @@ import pywikibot
 import getpass
 
 class TestWikiAccess(unittest.TestCase):
-    ''' Test Accessing MediaWiki viy pyWikibot API'''
+    ''' Test Accessing MediaWiki via pyWikibot API'''
     
     def test_rq(self):
         ''' test accessing wiki with id "rq" using encrypted credentials'''
