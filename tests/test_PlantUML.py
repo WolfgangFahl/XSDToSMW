@@ -1,27 +1,18 @@
+'''
+Created on 01.06.2020
+
+@author: wf
+'''
 import unittest
 from wikibot.wikibot import WikiBot
+from xsd2smw.plantuml import PlantUML
 from wikibot.smw import SMW
-import pywikibot
 import getpass
 
-class TestWikiAccess(unittest.TestCase):
-    ''' Test Accessing MediaWiki via pyWikibot API'''
+class TestPlantUML(unittest.TestCase):
     debug=True
-    
-    def test_rq(self):
-        ''' test accessing wiki with id "rq" using encrypted credentials'''
-        # can not test this on travis
-        if not getpass.getuser()=="travis":                 
-            wikibot=WikiBot.ofWikiId("rq")
-            site = wikibot.site
-            page = pywikibot.Page(site, u"WikiCFP")
-            text = page.text
 
-            #self.assertEqual(True, False)
-            self.assertTrue('Nonprofit' in text)
-            
-    def test_ask(self):
-        """ test using the SMW ask API """
+    def testPlantUML(self):
         if not getpass.getuser()=="travis":                 
             wikibot=WikiBot.ofWikiId("rq")
             smw=SMW(wikibot.site) 
@@ -44,8 +35,11 @@ class TestWikiAccess(unittest.TestCase):
 | limit=200 
 }}"""
             result=smw.query(ask)
-            if TestWikiAccess.debug:
-                print(result)    
+            if TestPlantUML.debug:
+                print(result)
+            pu=PlantUML()
+            pu.generate(result)
 
-if __name__ == '__main__':
+if __name__ == "__main__":
+    #import sys;sys.argv = ['', 'Test.testName']
     unittest.main()
