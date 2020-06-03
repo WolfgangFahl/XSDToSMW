@@ -37,7 +37,7 @@ class TestPlantUML(unittest.TestCase):
             result=smw.query(ask)
             if TestPlantUML.debug:
                 print(result)
-            pu=PlantUML()
+            pu=PlantUML("http://rq.bitplan.com/index.php")
             pu.generate(result)
 
 if __name__ == "__main__":
