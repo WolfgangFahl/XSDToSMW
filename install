@@ -1,10 +1,20 @@
 #!/bin/bash
 # WF 2020-04-29
-pip="sudo -H pip3"
+export pip="sudo -H pip3"
 if [ "$USER" = "travis" ]
 then
-  pip=pip
+  export pip=pip
 fi
+# if working on python venv
+
+whichpy=$(which python | grep venv)
+if [ $? -eq 0 ]
+then
+  export pip="pip"
+  echo 'found' $whichpy
+fi
+echo 'using' $pip
+
 # install modules as specified
 $pip install -r requirements.txt
 if [ ! -d schema ]
